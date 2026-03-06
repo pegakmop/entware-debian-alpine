@@ -1,3 +1,5 @@
+# entware-debian aarch64
+
 для запуска и работы дебиана внутри ентвара
 ```
 opkg update && opkg install ca-certificates wget-ssl curl
