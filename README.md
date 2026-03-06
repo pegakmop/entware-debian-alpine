@@ -2,8 +2,8 @@
 Установка дополнительно к ентвару по желанию:
 **[alpine aarch](https://www.pegakmop.site/entware-debian-alpine/alpine.md)**
 или
-**[debian aarch64](https://www.pegakmop.site/entware-debian-alpine/debian-aarch64.md)**
+**[debian aarch64](https://github.com/pegakmop/entware-debian-alpine/blob/main/debian-aarch64.md)**
 или
-**[debian mipsel](https://www.pegakmop.site/entware-debian-alpine/debian-mipsel.md)**
+**[debian mipsel](https://github.com/pegakmop/entware-debian-alpine/blob/main/debian-mipsel.md)**
 или
-**[debian mips](https://www.pegakmop.site/entware-debian-alpine/debian-mips.md)**
+**[debian mips](https://github.com/pegakmop/entware-debian-alpine/blob/main/debian-mips.md)**
