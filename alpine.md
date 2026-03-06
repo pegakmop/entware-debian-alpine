@@ -1,4 +1,4 @@
-установка и настройка алпайн допом к ентвару
+установка и настройка алпайн допом к ентвару только доя архитектуры aarch64
 ```
 opkg update
 opkg install ca-certificates wget-ssl curl
