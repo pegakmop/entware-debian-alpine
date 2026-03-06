@@ -3,3 +3,4 @@
 [alpine](https://github.com/pegakmop/entware-debian-alpine/blob/main/alpine.md)
 или
 [debian](https://github.com/pegakmop/entware-debian-alpine/blob/main/debian.md)
+под архитектуру aarch64
