@@ -3,7 +3,7 @@
 установка и настройка алпайн допом к ентвару только для архитектуры **aarch64**
 ```
 opkg update
-opkg install ca-certificates wget-ssl curl
+opkg install ca-certificates wget-ssl curl tar
 # скачиваем архив
 cd /opt/root/
 wget https://github.com/ryzhovau/keenetic-alpine/releases/download/v0.2/install-alpine-minirootfs-3.21.0-aarch64.tar.gz
