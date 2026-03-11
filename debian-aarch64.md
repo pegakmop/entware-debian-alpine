@@ -16,6 +16,7 @@ tar -xzf /opt/root/debian-trixie-13.3-aarch64.tar.gz -C /opt/debian
 # Создаем скрипт для входа в chroot
 cat > /opt/bin/debian << 'EOF'
 #!/bin/sh
+LANG=C LC_ALL=C \
 chroot /opt/debian/debian /bin/bash -l -c "cd /root && exec /bin/bash -l"
 EOF
 chmod +x /opt/bin/debian
