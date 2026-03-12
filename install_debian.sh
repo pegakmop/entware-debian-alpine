@@ -7,7 +7,7 @@ opkg install ca-certificates curl wget-ssl tar
 echo "Удаление wget-nossl"
 opkg remove wget-nossl
 echo "Остановка и удаление старого Debian"
-/opt/etc/init.d/S99debian stop
+/opt/etc/init.d/S99debian stop 2>&1 || true
 sleep 5
 rm -rf /opt/debian 2>&1 || true
 rm -rf /opt/bin/debian 2>&1 || true
