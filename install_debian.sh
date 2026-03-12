@@ -6,12 +6,12 @@ echo "Установка tar curl и wget-ssl..."
 opkg install ca-certificates curl wget-ssl tar
 echo "Удаление wget-nossl"
 opkg remove wget-nossl >/dev/null 2>&1 || true
-echo "Остановка и удаление старого Debian"
-/opt/etc/init.d/S99debian stop >/dev/null 2>&1 || true
-sleep 5
-rm -rf /opt/debian
-rm -rf /opt/bin/debian
-rm -rf /opt/etc/init.d/S99debian >/dev/null 2>&1 || true
+echo "Остановка старого Debian"
+/opt/etc/init.d/S99debian stop
+sleep 10
+#rm -rf /opt/debian
+#rm -rf /opt/bin/debian
+#rm -rf /opt/etc/init.d/S99debian >/dev/null 2>&1 || true
 echo "Определение архитектуры роутера..."
 
 ARCH=$(opkg print-architecture | awk '
@@ -48,6 +48,7 @@ echo "Определена архитектура: $ARCH"
 cd /opt/root
 rm -rf $FEED_URL
 rm -rf $NDMC_URL
+sleep 1
 echo "Скачиваю архив Debian: $FEED_URL"
 wget http://ndm.zyxmon.org/binaries/debian/$FEED_URL
 echo "Распаковываю архив Debian: $FEED_URL"
