@@ -1,7 +1,5 @@
 #!/bin/sh
 
-/opt/etc/init.d/S99debian stop
-
 echo "Обновление списка пакетов..."
 opkg update
 
@@ -9,7 +7,11 @@ echo "Установка tar curl и wget-ssl..."
 opkg install curl wget-ssl tar
 echo "Удаление wget-nossl"
 opkg remove wget-nossl
+echo "Остановка и удаление старого Debian"
+/opt/etc/init.d/S99debian stop
 rm -rf /opt/debian
+rm -rf /opt/bin/debian
+rm -rf /opt/etc/init.d/S99debian
 echo "Определение архитектуры роутера..."
 
 ARCH=$(opkg print-architecture | awk '
