@@ -140,7 +140,7 @@ exit 1
 ;;
 esac
 
-exit 0$NDMC_URL
+exit 0
 EOF
 echo "Запускаем Debian в системе"
 chmod +x /opt/etc/init.d/S99debian
