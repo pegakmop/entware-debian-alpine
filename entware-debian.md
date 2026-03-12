@@ -22,3 +22,7 @@ exit
 ```
 /opt/etc/init.d/S99debian stop
 ```
+Удалить Debian из entware
+```
+/opt/etc/init.d/S99debian stop && sleep 3 && rm -rf /opt/bin/debian && rm -rf /opt/etc/init.d/S99debian && rm -rf /opt/debian
+``` 
