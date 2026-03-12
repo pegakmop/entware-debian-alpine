@@ -20,5 +20,5 @@ exit
 ```
 Удалить Debian из entware
 ```
-/opt/etc/init.d/S99debian stop && rm -rf /opt/bin/debian && rm -rf /opt/etc/init.d/S99debian && rm -rf /opt/debian && echo "Остановка и удаление Debian из Entware завершено"
+/opt/etc/init.d/S99debian stop 2>&1 || true && rm -rf /opt/bin/debian 2>&1 || true && rm -rf /opt/etc/init.d/S99debian 2>&1 || true && rm -rf /opt/debian 2>&1 || true && echo "Остановка и удаление Debian из Entware завершено"
 ``` 
