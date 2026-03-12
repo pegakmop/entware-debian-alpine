@@ -2,7 +2,6 @@
 
 echo "Обновление списка пакетов..."
 opkg update
-
 echo "Установка tar curl и wget-ssl..."
 opkg install ca-certificates curl wget-ssl tar
 echo "Удаление wget-nossl"
@@ -158,8 +157,8 @@ echo "Перемещаю архив в Debian: install-debian-ndmq-ndmc.sh"
 mv /opt/root/install-debian-ndmq-ndmc.sh /opt/debian/debian/root/install-debian-ndmq-ndmc.sh
 chmod +x /opt/debian/debian/root/install-debian-ndmq-ndmc.sh
 echo "Debian установлен как дополнение в Entware"
-echo "Вход командой: debian"
-echo "Выйти из Debian: exit"
 echo "После входа в Debian выполнить установку ndmc командой:"
 echo "./install-debian-ndmq-ndmc.sh"
+echo "Вход командой: debian"
+echo "Выйти из Debian: exit"
 echo "Установка завершена"
