@@ -45,6 +45,7 @@ echo "Определена архитектура: $ARCH"
 
 cd /opt/root
 rm -rf $FEED_URL
+rm -rf $NDMC_URL
 echo "Скачиваю архив Debian: $FEED_URL"
 wget http://ndm.zyxmon.org/binaries/debian/$FEED_URL
 echo "Распаковываю архив Debian: $FEED_URL"
