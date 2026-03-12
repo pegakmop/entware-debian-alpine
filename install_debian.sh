@@ -4,7 +4,7 @@ echo "Обновление списка пакетов..."
 opkg update
 
 echo "Установка tar curl и wget-ssl..."
-opkg install curl wget-ssl tar
+opkg install ca-certificates curl wget-ssl tar
 echo "Удаление wget-nossl"
 opkg remove wget-nossl
 echo "Остановка и удаление старого Debian"
