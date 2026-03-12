@@ -14,11 +14,11 @@ exit
 ```
 /opt/etc/init.d/S99debian restart
 ```
-Остановить совсем Debian на случай если не сейчас не нужен
+Остановить совсем Debian на случай если не сейчас не нужен(если совсем не нужен ниже команда для удаления)
 ```
 /opt/etc/init.d/S99debian stop
 ```
-Удалить Debian из entware
+Удалить Debian из entware(после остановки)
 ```
-/opt/etc/init.d/S99debian stop 2>&1 || true && rm -rf /opt/bin/debian 2>&1 || true && rm -rf /opt/etc/init.d/S99debian 2>&1 || true && rm -rf /opt/debian 2>&1 || true && echo "Остановка и удаление Debian из Entware завершено"
+rm -rf /opt/bin/debian 2>&1 || true && rm -rf /opt/etc/init.d/S99debian 2>&1 || true && rm -rf /opt/debian 2>&1 || true && echo "Остановка и удаление Debian из Entware завершено"
 ``` 
