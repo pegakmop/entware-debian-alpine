@@ -1,0 +1,2 @@
+#!/bin/sh
+LANG=C LC_ALL=C chroot /opt/debian-to-entware/debian /bin/bash -l -c "cd /root && exec /bin/bash -l"
