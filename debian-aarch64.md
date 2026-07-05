@@ -52,6 +52,10 @@ start() {
 	for dir in dev dev/pts proc sys opt/etc; do
 		mount -o bind /$dir $CHROOT_DIR/$dir
 	done
+
+	# Создаем /dev/fd, если отсутствует (нужно для bash <(...))
+	[ -e /dev/fd ] || ln -s /proc/self/fd /dev/fd
+
 	[ -z "$EXT_DIR" ] || mount -o bind $EXT_DIR $CHROOT_DIR/media
 	for item in $(cat $CHROOT_SERVICES_LIST); do
 		PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/sbin \
