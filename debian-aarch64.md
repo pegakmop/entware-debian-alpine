@@ -139,6 +139,80 @@ debian
 apt update
 apt install -y wget curl
 ```
+добавить шим systemctl вместо заглушки
+```
+mkdir -p /usr/local/sbin
+cat > /usr/local/sbin/systemctl << 'SCRIPTEOF'
+#!/bin/bash
+UNIT_DIR="/etc/systemd/system"
+RUN_DIR="/run/fake-systemd"
+mkdir -p "$RUN_DIR"
+
+find_unit() {
+  local name="$1"
+  for d in "$UNIT_DIR" /lib/systemd/system /usr/lib/systemd/system; do
+    [ -f "$d/$name" ] && { echo "$d/$name"; return 0; }
+  done
+  return 1
+}
+get_field() {
+  local file="$1" field="$2"
+  grep -E "^${field}=" "$file" | head -1 | cut -d= -f2-
+}
+pidfile() { echo "$RUN_DIR/$1.pid"; }
+
+do_start() {
+  local svc="$1.service"
+  local unit; unit="$(find_unit "$svc")" || { echo "Unit $svc not found"; return 1; }
+  local pf; pf="$(pidfile "$1")"
+  if [ -f "$pf" ] && kill -0 "$(cat "$pf")" 2>/dev/null; then
+    echo "$1 already running"; return 0
+  fi
+  local execstart; execstart="$(get_field "$unit" ExecStart)"
+  [ -n "$execstart" ] || { echo "No ExecStart in $unit"; return 1; }
+  nohup $execstart >> "$RUN_DIR/$1.log" 2>&1 &
+  echo $! > "$pf"
+  echo "Started $1 (pid $(cat "$pf"))"
+}
+do_stop() {
+  local pf; pf="$(pidfile "$1")"
+  if [ -f "$pf" ]; then
+    kill "$(cat "$pf")" 2>/dev/null
+    rm -f "$pf"
+    echo "Stopped $1"
+  else
+    echo "$1 not running"
+  fi
+}
+do_status() {
+  local pf; pf="$(pidfile "$1")"
+  if [ -f "$pf" ] && kill -0 "$(cat "$pf")" 2>/dev/null; then
+    echo "● $1 - active (running), pid $(cat "$pf")"
+  else
+    echo "○ $1 - inactive (dead)"
+  fi
+}
+
+cmd="$1"; shift
+case "$cmd" in
+  start)   for s in "$@"; do do_start "${s%.service}"; done ;;
+  stop)    for s in "$@"; do do_stop "${s%.service}"; done ;;
+  restart) for s in "$@"; do do_stop "${s%.service}"; sleep 1; do_start "${s%.service}"; done ;;
+  status)  for s in "$@"; do do_status "${s%.service}"; done ;;
+  is-active)
+    pf="$(pidfile "${1%.service}")"
+    if [ -f "$pf" ] && kill -0 "$(cat "$pf")" 2>/dev/null; then echo active; exit 0
+    else echo inactive; exit 3; fi ;;
+  enable|disable|daemon-reload|daemon-reexec|reset-failed|mask|unmask)
+    echo "Running in chroot, ignoring command '$cmd'"; exit 0 ;;
+  list-unit-files|list-units)
+    ls "$UNIT_DIR" 2>/dev/null ;;
+  *) echo "systemctl-shim: unsupported command '$cmd'"; exit 0 ;;
+esac
+SCRIPTEOF
+chmod +x /usr/local/sbin/systemctl
+
+```
 ставим по желанию ndmq и подмену на привычный ndmc
 ``` 
 debian
