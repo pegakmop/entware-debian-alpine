@@ -251,4 +251,39 @@ debian
 выход такой командой
 ```
 exit
+```
+красивая заставка debian при входе
+```
+cat > /etc/profile.d/welcome.sh << 'EOF'
+#!/bin/bash
+[ -n "$PS1" ] || return
+
+echo ""
+echo -e "\e[36m"
+cat << 'BANNER'
+  ██████╗ ███████╗██████╗ ██╗ █████╗ ███╗   ██╗
+  ██╔══██╗██╔════╝██╔══██╗██║██╔══██╗████╗  ██║
+  ██║  ██║█████╗  ██████╔╝██║███████║██╔██╗ ██║
+  ██║  ██║██╔══╝  ██╔══██╗██║██╔══██║██║╚██╗██║
+  ██████╔╝███████╗██████╔╝██║██║  ██║██║ ╚████║
+  ╚═════╝ ╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝
+
+  chroot Debian на Keenetic с Entware
+BANNER
+echo -e "\e[0m"
+
+TEMP=$(cat /sys/class/thermal/thermal_zone0/temp 2>/dev/null)
+[ -n "$TEMP" ] && echo "  Температура CPU: $((TEMP/1000))°C"
+
+if command -v ndmc >/dev/null 2>&1; then
+  VERSION_XML=$(ndmc -c "show version" 2>/dev/null)
+  MODEL=$(echo "$VERSION_XML" | grep -oP '(?<=<model>).*?(?=</model>)')
+  RELEASE=$(echo "$VERSION_XML" | grep -oP '(?<=<title>).*?(?=</title>)')
+  [ -n "$MODEL" ] && echo "  Модель роутера: $MODEL"
+  [ -n "$RELEASE" ] && echo "  Прошивка: $RELEASE"
+fi
+
+echo ""
+EOF
+chmod +x /etc/profile.d/welcome.sh
 ``` 
