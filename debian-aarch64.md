@@ -124,7 +124,7 @@ chmod +x /opt/etc/init.d/S99debian
 # Создаем файл со списком сервисов (пример)
 # cat > /opt/debian/debian/chroot-services.list << 'EOF'
 # Примеры сервисов (раскомментируйте нужные)
-ssh
+# ssh
 # cron
 # nginx
 # EOF
