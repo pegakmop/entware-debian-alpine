@@ -137,7 +137,7 @@ echo "Для управления сервисом Debian: /opt/etc/init.d/S99de
 ``` 
 debian
 apt update
-apt install -y ca-certificate wget curl
+apt install -y wget curl
 ```
 ставим по желанию ndmq и подмену на привычный ndmc
 ``` 
