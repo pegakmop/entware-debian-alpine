@@ -8,10 +8,10 @@ opkg update && opkg install ca-certificates wget-ssl curl tar
 ``` 
 # Скачиваем архив Debian
 cd /opt/root
-wget http://ndm.zyxmon.org/binaries/debian/debian-trixie-13.3-aarch64.tar.gz
+wget http://ndm.zyxmon.org/binaries/debian/debian-trixie-13.5-aarch64.tar.gz
 # Создаем директорию и распаковываем Debian
 mkdir -p /opt/debian
-tar -xzf /opt/root/debian-trixie-13.3-aarch64.tar.gz -C /opt/debian
+tar -xzf /opt/root/debian-trixie-13.5-aarch64.tar.gz -C /opt/debian
 
 # Создаем скрипт для входа в chroot
 cat > /opt/bin/debian << 'EOF'
