@@ -5,6 +5,10 @@
 # выполнить:
 # chmod +x /opt/usr/bin/systemctl
 
+# с ентвара два в одном
+# /opt/debian/debian/usr/bin/systemctl
+# chmod +x /opt/debian/debian/usr/bin/systemctl
+
 INIT_DIR="/opt/etc/init.d"
 EDITOR="${EDITOR:-vim}"
 
