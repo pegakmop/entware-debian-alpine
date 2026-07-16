@@ -5,6 +5,10 @@
 # выполнить:
 # chmod +x /opt/usr/bin/journalctl
 
+# с ентвара два в одном
+# /opt/debian/debian/usr/bin/journalctl
+# chmod +x /opt/debian/debian/usr/bin/journalctl
+
 INIT_DIR="/opt/etc/init.d"
 
 # --- Функции, аналогичные systemctl ---
